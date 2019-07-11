@@ -4,6 +4,8 @@ import { expect } from 'chai';
 import test from '../src';
 
 describe('Test Suite', () => {
+  process.env.APP_ENV = 'testing';
+
   it('should pass when perfect match', () => {
     expect(test('8.10.0')).to.eql(true);
     expect(test('v8.10.0')).to.eql(true);

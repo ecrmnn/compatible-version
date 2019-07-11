@@ -1,6 +1,10 @@
 export default (versionish: string): boolean => {
   const [versionishMajor, versionishMinor, versionishPatch] = versionish.replace(/v/g, '').split('.');
-  const [nodeMajor, nodeMinor, nodePatch] = process.versions.node.split('.');
+  let [nodeMajor, nodeMinor, nodePatch] = process.version.replace(/v/g, '').split('.');
+
+  if (process.env.APP_ENV === 'testing') {
+    [nodeMajor, nodeMinor, nodePatch] = 'v8.10.0'.replace(/v/g, '').split('.');
+  }
 
   if ((versionishMajor === nodeMajor)
     && (versionishMinor === nodeMinor)
